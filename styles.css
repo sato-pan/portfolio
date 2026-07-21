@@ -40,6 +40,73 @@ a{ color: inherit; text-decoration: none; }
   padding: 0 32px;
 }
 
+/* ===== Lock screen ===== */
+html.locked{ overflow: hidden; }
+.lock-screen{
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: var(--bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 24px;
+  transition: opacity .4s ease;
+}
+.lock-screen.unlocked{
+  opacity: 0;
+  pointer-events: none;
+}
+.lock-box{
+  width: 100%;
+  max-width: 360px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 14px;
+}
+.lock-eyebrow{
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+}
+.lock-title{
+  font-family: var(--font-en);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  margin-bottom: 10px;
+}
+.lock-form{
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  gap: 14px;
+}
+.lock-input{
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-en);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  padding: 14px 16px;
+  border-radius: 2px;
+  text-align:center;
+}
+.lock-input:focus{ outline: none; border-color: var(--accent); }
+.lock-form .btn{ border: none; cursor:pointer; }
+.lock-error{
+  font-size: 12.5px;
+  color: #e8362b;
+  visibility: hidden;
+}
+.lock-error.show{ visibility: visible; }
+
 /* film grain overlay */
 .grain{
   position: fixed;

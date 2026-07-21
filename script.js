@@ -1,3 +1,36 @@
+// Lock screen (client-side only — not real security, just a soft gate)
+(function(){
+  const SITE_PASSWORD = 'satoken1012';
+  const STORAGE_KEY = 'satoken-portfolio-unlocked';
+  const lockScreen = document.getElementById('lockScreen');
+  const lockForm = document.getElementById('lockForm');
+  const lockInput = document.getElementById('lockInput');
+  const lockError = document.getElementById('lockError');
+
+  function unlock() {
+    document.documentElement.classList.remove('locked');
+    lockScreen.classList.add('unlocked');
+  }
+
+  if (localStorage.getItem(STORAGE_KEY) === '1') {
+    unlock();
+  } else {
+    document.documentElement.classList.add('locked');
+  }
+
+  lockForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (lockInput.value === SITE_PASSWORD) {
+      localStorage.setItem(STORAGE_KEY, '1');
+      unlock();
+    } else {
+      lockError.classList.add('show');
+      lockInput.value = '';
+      lockInput.focus();
+    }
+  });
+})();
+
 // Header scroll state
 const header = document.getElementById('siteHeader');
 window.addEventListener('scroll', () => {
