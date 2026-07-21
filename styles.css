@@ -484,20 +484,22 @@ html.locked{ overflow: hidden; }
   margin-bottom: 40px;
 }
 .photo-gallery{
-  column-count: 4;
-  column-gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
   margin-bottom: 32px;
 }
 .photo-item{
-  break-inside: avoid;
-  margin-bottom: 14px;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 2px;
   border: 1px solid var(--line);
+  cursor: pointer;
 }
 .photo-item img{
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform .5s ease;
 }
@@ -675,6 +677,50 @@ html.locked{ overflow: hidden; }
   line-height:1;
 }
 
+/* ===== Lightbox ===== */
+.lightbox{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.lightbox.active{ display: flex; }
+.lightbox-img{
+  max-width: min(90vw, 1000px);
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 2px;
+}
+.lightbox-close{
+  position: absolute;
+  top: 24px; right: 24px;
+  background: none; border: none;
+  color: var(--text);
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 1;
+}
+.lightbox-nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none; border: none;
+  color: var(--text);
+  font-size: 48px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 12px;
+  transition: color .2s ease;
+}
+.lightbox-nav:hover{ color: var(--accent); }
+.lightbox-prev{ left: 8px; }
+.lightbox-next{ right: 8px; }
+
 /* ===== Reveal animation ===== */
 .reveal{
   opacity: 0;
@@ -690,12 +736,14 @@ html.locked{ overflow: hidden; }
   .process-flow{ flex-direction: column; }
   .process-arrow{ width: 1px; height: 28px; align-self: center; }
   .process-arrow::after{ right: 50%; top: auto; bottom: 0; transform: translate(50%, 0) rotate(135deg); }
-  .photo-gallery{ column-count: 3; }
+  .photo-gallery{ grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 720px){
   .onair-badge{ display:none; }
-  .photo-gallery{ column-count: 2; }
+  .photo-gallery{ grid-template-columns: repeat(2, 1fr); }
+  .lightbox-nav{ font-size: 32px; padding: 8px; }
+  .lightbox-close{ top: 12px; right: 12px; font-size: 28px; }
   .nav{
     position: fixed;
     top: 0; right: 0;

@@ -121,3 +121,46 @@ modal.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
+
+// Photo lightbox
+const lightbox = document.getElementById('photoLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+const galleryPhotos = Array.from(document.querySelectorAll('#photoGallery .photo-item img'));
+let lightboxIndex = 0;
+
+function showLightboxPhoto(index) {
+  lightboxIndex = (index + galleryPhotos.length) % galleryPhotos.length;
+  const img = galleryPhotos[lightboxIndex];
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt;
+}
+
+function openLightbox(index) {
+  showLightboxPhoto(index);
+  lightbox.classList.add('active');
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  lightboxImg.src = '';
+}
+
+galleryPhotos.forEach((img, index) => {
+  img.closest('.photo-item').addEventListener('click', () => openLightbox(index));
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxPrev.addEventListener('click', () => showLightboxPhoto(lightboxIndex - 1));
+lightboxNext.addEventListener('click', () => showLightboxPhoto(lightboxIndex + 1));
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') showLightboxPhoto(lightboxIndex - 1);
+  if (e.key === 'ArrowRight') showLightboxPhoto(lightboxIndex + 1);
+});
