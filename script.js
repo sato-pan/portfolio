@@ -106,6 +106,10 @@ document.querySelectorAll('.work-card').forEach(card => {
   });
 });
 
+document.querySelectorAll('.work-channel-link').forEach(link => {
+  link.addEventListener('click', (e) => e.stopPropagation());
+});
+
 function closeModal() {
   modal.classList.remove('active');
   modalVideo.innerHTML = '';

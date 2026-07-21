@@ -459,6 +459,21 @@ html.locked{ overflow: hidden; }
   color: var(--text-dim);
   line-height: 1.7;
 }
+.work-channel-link{
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--teal);
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s ease;
+}
+.work-channel-link:hover{ border-color: var(--teal); }
+.inline-link{
+  color: var(--teal);
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s ease;
+}
+.inline-link:hover{ border-color: var(--teal); }
 
 /* Accordion */
 .accordion{ border-top: 1px solid var(--line); }
