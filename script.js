@@ -50,48 +50,6 @@ setTimeout(() => {
   revealEls.forEach(el => el.classList.add('in-view'));
 }, 4000);
 
-// Stat counters
-const statEls = document.querySelectorAll('.stat-num');
-let statIo = null;
-if ('IntersectionObserver' in window) {
-  statIo = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCount(entry.target);
-        statIo.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-}
-statEls.forEach(el => {
-  if (isInViewport(el)) {
-    animateCount(el);
-  } else if (statIo) {
-    statIo.observe(el);
-  } else {
-    animateCount(el);
-  }
-});
-// Safety net for counters too
-setTimeout(() => {
-  statEls.forEach(el => {
-    if (el.textContent === '0') animateCount(el);
-  });
-}, 4000);
-
-function animateCount(el) {
-  const target = parseInt(el.dataset.count, 10);
-  const duration = 1200;
-  const start = performance.now();
-  function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(eased * target);
-    if (progress < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
 // Accordion
 document.querySelectorAll('.acc-head').forEach(btn => {
   btn.addEventListener('click', () => {
