@@ -125,7 +125,8 @@ document.addEventListener('keydown', (e) => {
 // Photo lightbox
 const lightbox = document.getElementById('photoLightbox');
 const lightboxImg = document.getElementById('lightboxImg');
-const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxCaptionJp = document.getElementById('lightboxCaptionJp');
+const lightboxCaptionEn = document.getElementById('lightboxCaptionEn');
 const lightboxClose = document.getElementById('lightboxClose');
 const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
@@ -137,7 +138,8 @@ function showLightboxPhoto(index) {
   const img = galleryPhotos[lightboxIndex];
   lightboxImg.src = img.src;
   lightboxImg.alt = img.alt;
-  lightboxCaption.textContent = img.alt;
+  lightboxCaptionJp.textContent = img.alt;
+  lightboxCaptionEn.textContent = img.dataset.en;
 }
 
 function openLightbox(index) {

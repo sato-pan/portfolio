@@ -704,9 +704,21 @@ html.locked{ overflow: hidden; }
   border-radius: 2px;
 }
 .lightbox-caption{
-  font-size: 13.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.lightbox-caption-jp{
+  font-size: 14px;
   letter-spacing: 0.05em;
-  color: var(--text-dim);
+  color: var(--text);
+}
+.lightbox-caption-en{
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--text-faint);
 }
 .lightbox-close{
   position: absolute;
