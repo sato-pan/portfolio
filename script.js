@@ -122,43 +122,20 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
 
-// Photo stage + thumbnail rail
-const railThumbs = Array.from(document.querySelectorAll('#photoGallery .rail-thumb'));
-const galleryPhotos = railThumbs.map(btn => {
-  const img = btn.querySelector('img');
-  return { src: img.getAttribute('src'), alt: img.alt };
-});
-const stageImg = document.getElementById('stageImg');
-const stageCaption = document.getElementById('stageCaption');
-let stageIndex = 0;
-
-function setStage(index) {
-  stageIndex = (index + galleryPhotos.length) % galleryPhotos.length;
-  const photo = galleryPhotos[stageIndex];
-  stageImg.src = photo.src;
-  stageImg.alt = photo.alt;
-  stageCaption.textContent = photo.alt;
-  railThumbs.forEach((t, i) => t.classList.toggle('is-active', i === stageIndex));
-}
-
-railThumbs.forEach((btn, index) => {
-  btn.addEventListener('click', () => setStage(index));
-});
-
-// Photo lightbox (opens full view of the current stage photo)
+// Photo lightbox
 const lightbox = document.getElementById('photoLightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
 const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
+const galleryPhotos = Array.from(document.querySelectorAll('#photoGallery .photo-item img'));
 let lightboxIndex = 0;
 
 function showLightboxPhoto(index) {
   lightboxIndex = (index + galleryPhotos.length) % galleryPhotos.length;
-  const photo = galleryPhotos[lightboxIndex];
-  lightboxImg.src = photo.src;
-  lightboxImg.alt = photo.alt;
-  setStage(lightboxIndex);
+  const img = galleryPhotos[lightboxIndex];
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt;
 }
 
 function openLightbox(index) {
@@ -171,7 +148,9 @@ function closeLightbox() {
   lightboxImg.src = '';
 }
 
-stageImg.addEventListener('click', () => openLightbox(stageIndex));
+galleryPhotos.forEach((img, index) => {
+  img.closest('.photo-item').addEventListener('click', () => openLightbox(index));
+});
 
 lightboxClose.addEventListener('click', closeLightbox);
 lightboxPrev.addEventListener('click', () => showLightboxPhoto(lightboxIndex - 1));
