@@ -1,21 +1,3 @@
-// Running timecode (HH:MM:SS:FF, 30fps) since page load
-const timecodeEl = document.getElementById('timecode');
-if (timecodeEl) {
-  const fps = 30;
-  const tcStart = performance.now();
-  const pad = (n) => String(n).padStart(2, '0');
-  (function tickTimecode() {
-    const totalFrames = Math.floor((performance.now() - tcStart) * fps / 1000);
-    const ff = totalFrames % fps;
-    const totalSeconds = Math.floor(totalFrames / fps);
-    const ss = totalSeconds % 60;
-    const mm = Math.floor(totalSeconds / 60) % 60;
-    const hh = Math.floor(totalSeconds / 3600);
-    timecodeEl.textContent = `${pad(hh)}:${pad(mm)}:${pad(ss)}:${pad(ff)}`;
-    requestAnimationFrame(tickTimecode);
-  })();
-}
-
 // Header scroll state
 const header = document.getElementById('siteHeader');
 window.addEventListener('scroll', () => {

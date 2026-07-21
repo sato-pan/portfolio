@@ -77,24 +77,12 @@ a{ color: inherit; text-decoration: none; }
 .brand-group{ display:flex; align-items:center; gap: 18px; }
 .logo{
   font-family: var(--font-en);
-  font-size: 19px;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
 }
-.logo-rec{
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px 1px rgba(255,107,53,0.7);
-  animation: recpulse 1.8s ease-in-out infinite;
-}
-@keyframes recpulse{
-  0%,100%{ opacity: 1; }
-  50%{ opacity: .35; }
-}
+.logo-accent{ color: var(--accent); }
 .onair-badge{
   font-family: var(--font-en);
   font-size: 10.5px;
@@ -179,35 +167,6 @@ a{ color: inherit; text-decoration: none; }
 .hero-frame.br{ bottom: 36px; right: 32px; border-bottom-width:1px; border-right-width:1px; }
 
 .hero-inner{ position:relative; z-index:1; max-width: 820px; }
-
-.rec-bar{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-.rec-dot{
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #e8362b;
-  box-shadow: 0 0 8px 1px rgba(232,54,43,0.7);
-  animation: recpulse 1.8s ease-in-out infinite;
-}
-.rec-label{
-  font-family: var(--font-en);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  color: #e8362b;
-}
-.timecode{
-  font-family: 'Courier New', ui-monospace, Consolas, monospace;
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  color: var(--text-faint);
-  font-variant-numeric: tabular-nums;
-}
 
 .eyebrow{
   font-family: var(--font-en);
