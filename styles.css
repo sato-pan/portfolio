@@ -490,7 +490,7 @@ html.locked{ overflow: hidden; }
   margin-bottom: 32px;
 }
 .photo-item{
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   border-radius: 2px;
   border: 1px solid var(--line);
