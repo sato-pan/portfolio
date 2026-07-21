@@ -1,6 +1,6 @@
 // Lock screen (client-side only — not real security, just a soft gate)
 (function(){
-  const SITE_PASSWORD = 'satoken1012';
+  const SITE_PASSWORD = 'tosaken1012';
   const STORAGE_KEY = 'satoken-portfolio-unlocked';
   const lockScreen = document.getElementById('lockScreen');
   const lockForm = document.getElementById('lockForm');
