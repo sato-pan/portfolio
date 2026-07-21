@@ -76,11 +76,24 @@ a{ color: inherit; text-decoration: none; }
 }
 .logo{
   font-family: var(--font-en);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.logo span{ color: var(--accent); }
+.logo-rec{
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px 1px rgba(255,107,53,0.7);
+  animation: recpulse 1.8s ease-in-out infinite;
+}
+@keyframes recpulse{
+  0%,100%{ opacity: 1; }
+  50%{ opacity: .35; }
+}
 .nav{ display:flex; align-items:center; gap: 32px; }
 .nav a{
   font-family: var(--font-en);
